@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adopt A Pet</title>
+    <link rel="stylesheet" href="/static/app.css" />
+  </head>
+  <body>
+    <h1>Add Pet</h1>
+    <form action="" id="add-pet-form" method="post">
+      {{ form.hidden_tag()}} {%for field in form if field.widget.input_type !=
+      'hidden' %}
+      <p>{{field.label}} {{field}}</p>
+      {%endfor%}
+      <button
+        type="submit"
+        style="
+          background-color: teal;
+          color: white;
+          border-radius: 4px;
+          border: none;
+          padding: 5px 10px;
+        "
+      >
+        Submit
+      </button>
+    </form>
+  </body>
+</html>

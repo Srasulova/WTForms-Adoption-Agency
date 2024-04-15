@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adopt A Pet</title>
+    <link rel="stylesheet" href="/static/app.css" />
+  </head>
+  <body>
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for
+    message in messages %}
+    <p
+      style="
+        background-color: lightcoral;
+        color: white;
+        padding: 20px;
+        margin: 0;
+      "
+    >
+      {{ message }} {% endfor %} {% endif %} {% endwith %}
+    </p>
+    <h1>Pet info</h1>
+    <h2>{{ pet.name }}</h2>
+    <p>Species: {{ pet.species }}</p>
+    <p>Age: {{ pet.age }}</p>
+    <p>
+      Image:
+      <img
+        src="{{pet.photo_url}}"
+        alt="{{pet.name}} photo"
+        style="max-width: 200px"
+      />
+    </p>
+    <p>Notes: {{pet.notes}}</p>
+    <p>
+      {% if pet.available %}
+      <span style="font-weight: bold">Available</span>
+      {% endif %}
+    </p>
+
+    <h2>Edit your pet</h2>
+    <form action="{{url_for('edit_pet_form', petId=pet.id)}}" method="post">
+      {{ form.hidden_tag()}}
+      <div>{{form.photo_url.label}} {{form.photo_url(size=200)}}</div>
+      <div>{{form.notes.label}} {{form.notes}}</div>
+      <div>{{form.available.label}} {{form.available}}</div>
+      <button
+        type="submit"
+        style="
+          background-color: salmon;
+          color: white;
+          border-radius: 4px;
+          border: none;
+          padding: 5px 10px;
+          margin: 10px;
+        "
+      >
+        Save
+      </button>
+    </form>
+
+    <a href="/">
+      <button
+        style="
+          background-color: teal;
+          color: white;
+          border-radius: 4px;
+          border: none;
+          padding: 5px 10px;
+          margin: 10px;
+        "
+      >
+        Go back
+      </button></a
+    >
+  </body>
+</html>
